@@ -8,8 +8,11 @@ let gameState = {
 //class list for background image that is defined in CSS
 document.body.classList.add("body-background");
 
-// function that considers which player's turn it is and then
-// changes the UI accordingly
+//function that tracks whose turn it is and have that reflect on the 'Attack' button
+//the button of the player whose turn it it should be grey 
+//the button of the player being attacked should be red (or not grey)
+//button should switch in appearance after each players turn (most likely use toggle here)
+
 function changePlayer() {
     // if the current player is player 1 at the end of a move
     if (gameState.whoseTurn === 1) {
@@ -36,7 +39,33 @@ function changePlayer() {
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
+     }
+    else {{ //added an else block to handle the case when the second player attacks
+        //to ge the health element of the first player
+        let playerOneHealth = document.getElementById("playerOneHealth");
+        //get the number value of health 
+        let playerOneHealthNum = Number(playerOneHealth.innerHTML); 
+        //reduces by 10
+        playerOneHealthNum -= 10; 
+      // update the health element to a new value
+        playerOneHealth.innerHTML = playerOneHealthNum; 
+
+        //check if the player has reached zero health
+        if (playerOneHealthNum <= 0) {
+            //ensure health doesn't go into the negatives
+            playerOneHealth = 0;
+            //end the game
+            gameOver();
+        }
+        else {
+            //switch the turn to first player
+      gameState.whoseTurn = 1;
+        // gets the name element of the current player and changes the players turn display
+      let playerName = document.getElementById("playerName"); 
+      playerName.innerHTML = `Player ${gameState.whoseTurn}`;
+        }
     }
+}
 }
 
 // if a player's health reaches 0 at the end of a turn, the game ends
@@ -66,10 +95,12 @@ function attackPlayerTwo() {
         playerTwoAttackButton.classList.add("inactive");
         playerTwoAttackButton.classList.remove("active");
 
+
         let playerOneAttackButton = document.getElementById("playerOneAttack");
         playerOneAttackButton.disabled = false;
         playerOneAttackButton.classList.add("active");
         playerOneAttackButton.classList.remove("inactive");
+    
     }
 
     // commpartmentalized function that changes the player 1's sprite using the array
