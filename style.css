@@ -1,14 +1,18 @@
 body {
-    /*adding a background image to body*/
-    background-image:url("./images/forest.png");
-    /*the background-size property ensures the image covers the entire background of body*/
+   
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
+.body-background { 
+    /*adding a background image to body*/
+    background-image:url("./images/forest.png");
+    /*the background-size property ensures the image covers the entire background of body*/
+    background-size: cover;
+   }
+   
 #gameOverScreen {
     display: none;
 }

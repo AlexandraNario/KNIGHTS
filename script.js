@@ -5,7 +5,8 @@ let gameState = {
     whoseTurn: 1,
     gameOver: false
 }
-
+//class list for background image that is defined in CSS
+document.body.classList.add("body-background");
 
 // function that considers which player's turn it is and then
 // changes the UI accordingly
