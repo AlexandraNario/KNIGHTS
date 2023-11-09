@@ -40,7 +40,7 @@ function changePlayer() {
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
      }
-    else {{ //added an else block to handle the case when the second player attacks
+    else { //added an else block to handle the case when the second player attacks
         //to ge the health element of the first player
         let playerOneHealth = document.getElementById("playerOneHealth");
         //get the number value of health 
@@ -66,7 +66,7 @@ function changePlayer() {
         }
     }
 }
-}
+
 
 // if a player's health reaches 0 at the end of a turn, the game ends
 // and the winner is announced
@@ -91,15 +91,19 @@ function attackPlayerTwo() {
     // this also DISABLES the button, meaning they are not interactable
     function changeButtonStatus() {
         let playerTwoAttackButton = document.getElementById("playerTwoAttack");
-        playerTwoAttackButton.disabled = true;
-        playerTwoAttackButton.classList.add("inactive");
-        playerTwoAttackButton.classList.remove("active");
+        //playerTwoAttackButton.disabled = true;
+        //playerTwoAttackButton.classList.add("inactive");
+       // playerTwoAttackButton.classList.remove("active");
+       //going to remove these lines and test how to toggle the inactive class on the button
+       playerTwoAttackButton.classList.toggle("inactive")
 
 
         let playerOneAttackButton = document.getElementById("playerOneAttack");
-        playerOneAttackButton.disabled = false;
-        playerOneAttackButton.classList.add("active");
-        playerOneAttackButton.classList.remove("inactive");
+        //playerOneAttackButton.disabled = false;
+       // playerOneAttackButton.classList.add("active");
+        //playerOneAttackButton.classList.remove("inactive");
+        //removing this lines and added a line to toggle the inactive class 
+        playerOneAttackButton.classList.toggle("inactive");
     
     }
 
@@ -169,8 +173,8 @@ function attackPlayerOne() {
         playerOneHealthNum -= 10;
         playerOneHealth.innerHTML = playerOneHealthNum;
 
-        if (playerOneHealth <= 0) {
-            playerOneHealth = 0;
+        if (playerOneHealthNum <= 0) {
+            playerOneHealth.innerHTML = 0;
             gameOver();
         } else {
             changePlayer();
